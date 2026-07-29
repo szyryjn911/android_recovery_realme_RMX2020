@@ -9,6 +9,6 @@ PRODUCT_MAKEFILES := \
     $(LOCAL_DIR)/omni_RMX2020.mk
 
 COMMON_LUNCH_CHOICES := \
-    omni_RMX2020-user \
-    omni_RMX2020-userdebug \
-    omni_RMX2020-eng
+    TWRP_RMX2020-user \
+    TWRP_RMX2020-userdebug \
+    TWRP_RMX2020-eng
