@@ -76,6 +76,10 @@ BOARD_SUPER_PARTITION_GROUPS := alps_dynamic_partitions
 BOARD_ALPS_DYNAMIC_PARTITIONS_PARTITION_LIST := system vendor product odm system_ext
 BOARD_ALPS_DYNAMIC_PARTITIONS_SIZE := 9122611200 # TODO: Fix hardcoded value
 
+# Metadata (needed for FBE decrypt to work properly)
+BOARD_USES_METADATA_PARTITION := true
+BOARD_ROOT_EXTRA_FOLDERS += metadata
+
 # Platform
 TARGET_BOARD_PLATFORM := mt6768
 
@@ -83,6 +87,8 @@ TARGET_BOARD_PLATFORM := mt6768
 BOARD_INCLUDE_RECOVERY_DTBO := true
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery.fstab
+TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 
 # Security patch level
 VENDOR_SECURITY_PATCH := 2021-08-01
@@ -91,6 +97,36 @@ VENDOR_SECURITY_PATCH := 2021-08-01
 PLATFORM_SECURITY_PATCH := 2099-12-31
 VENDOR_SECURITY_PATCH := 2099-12-31
 PLATFORM_VERSION := 16.1.0
+
+# Crypto (FBE decrypt fix — sabse important part, TrustZone/Keymaster path ke liye zaroori)
+TW_INCLUDE_CRYPTO := true
+TW_INCLUDE_CRYPTO_FBE := true
+TW_INCLUDE_FBE_METADATA_DECRYPT := true
+TW_USE_FSCRYPT_POLICY := 1
+TW_PREPARE_DATA_MEDIA_EARLY := true
+
+TARGET_RECOVERY_DEVICE_MODULES += \
+    libkeymaster4 \
+    libpuresoftkeymasterdevice \
+    ashmemd_aidl_interface-cpp \
+    libashmemd_client \
+    android.hardware.vibrator-V1-ndk_platform
+
+TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster4.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/ashmemd_aidl_interface-cpp.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libashmemd_client.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/android.hardware.vibrator-V1-ndk_platform.so
+
+# Reboot / bootloop protection (reboot-to-system stuck-in-recovery fix)
+TW_NO_REBOOT_BOOTLOOP := true
+
+# Fastbootd
+TW_INCLUDE_FASTBOOTD := true
+
+# USB OTG
+TW_INCLUDE_LIBUSB_OTG := true
 
 # TWRP Configuration
 TW_THEME := portrait_hdpi
