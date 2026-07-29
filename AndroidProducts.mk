@@ -6,7 +6,7 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/omni_RMX2020.mk
+    $(LOCAL_DIR)/TWRP_RMX2020.mk
 
 COMMON_LUNCH_CHOICES := \
     TWRP_RMX2020-user \
