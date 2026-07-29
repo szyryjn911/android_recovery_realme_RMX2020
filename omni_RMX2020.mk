@@ -10,13 +10,13 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 # Inherit some common Omni stuff.
-$(call inherit-product, vendor/omni/config/common.mk)
+$(call inherit-product, vendor/twrp/config/common.mk)
 
 # Inherit from RMX2020 device
 $(call inherit-product, device/realme/RMX2020/device.mk)
 
 PRODUCT_DEVICE := RMX2020
-PRODUCT_NAME := omni_RMX2020
+PRODUCT_NAME := TWRP_RMX2020
 PRODUCT_BRAND := realme
 PRODUCT_MODEL := RMX2020
 PRODUCT_MANUFACTURER := realme
