@@ -4,7 +4,6 @@ on init
     setprop persist.sys.firstlaunch false
     
 on fs
-    install_keyring
     setprop crypto.ready 1
     write /sys/class/power_supply/usb/otg_switch 1
 
