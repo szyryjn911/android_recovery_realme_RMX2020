@@ -168,7 +168,7 @@ TW_OZIP_DECRYPT_KEY := 0000
 TW_INCLUDE_LOGICAL := my_product my_engineering my_company my_carrier my_region my_heytap my_stock my_preload my_manifest
 TW_NO_HAPTICS := true
 TW_FRAMERATE := 60
-TW_OVERRIDE_SYSTEM_PROPS := ro.build.date.utc;ro.build.product
+TW_OVERRIDE_SYSTEM_PROPS := "ro.build.product;ro.build.fingerprint=ro.system.build.fingerprint;ro.build.version.incremental;ro.product.device=ro.product.system.device;ro.product.model=ro.product.system.model;ro.product.name=ro.product.system.name"
 TW_INCLUDE_LIBRESETPROP := true
 TW_INCLUDE_RESETPROP := true
 TW_INCLUDE_REPACKTOOLS := true
