@@ -179,3 +179,6 @@ TARGET_USES_LOGD := true
 
 # Apex
 TW_EXCLUDE_APEX := true
+
+# OrangeFox
+OF_MAINTAINER := Szyryjn
